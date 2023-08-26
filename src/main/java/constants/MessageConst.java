@@ -1,10 +1,5 @@
 package constants;
 
-public class MessageConst {
-
-}
-package constants;
-
 /**
  * 各出力メッセージを定義するEnumクラス
  *
