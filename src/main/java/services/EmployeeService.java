@@ -162,7 +162,7 @@ public class EmployeeService extends ServiceBase{
 
             //バリデーションエラーがなければデータを更新する
             if(errors.size()==0) {
-                update(saved-+Emp);
+                update(savedEmp);
             }
 
             //エラーを返却
