@@ -55,5 +55,5 @@ public class EmployeeView {
     /**
      * 削除された社員かどうか
      */
-    private Integer deteleFlag;
+    private Integer deleteFlag;
 }

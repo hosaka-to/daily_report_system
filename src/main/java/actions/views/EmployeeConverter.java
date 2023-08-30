@@ -33,7 +33,7 @@ public class EmployeeConverter {
                     : JpaConst.ROLE_GENERAL,
                 ev.getCreatedAt(),
                 ev.getUpdatedAt(),
-                ev.getDeteleFlag() == null
+                ev.getDeleteFlag() == null
                 ? null
                         : ev.getAdminFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
                         ? JpaConst.EMP_DEL_TRUE

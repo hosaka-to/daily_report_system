@@ -24,7 +24,7 @@ public class EmployeeValidator {
      */
 
     public static List<String> validate(
-            EmployeeService service,EmployeeView ev,Boolean codeDuplicateCheckFlag,Boolean passwordCheckFlg){
+            EmployeeService service,EmployeeView ev,Boolean codeDuplicateCheckFlag,Boolean passwordCheckFlag){
         List<String> errors = new ArrayList<String>();
 
         //社員番号のチェック
@@ -40,7 +40,7 @@ public class EmployeeValidator {
         }
 
         //パスワードのチェック
-        String passError = validatePassWord(ev.getPassword(),passwordCheckFlag);
+        String passError = validatePassword(ev.getPassword(),passwordCheckFlag);
         if (!passError.equals("")) {
             errors.add(passError);
         }
@@ -56,7 +56,7 @@ public class EmployeeValidator {
      * @param codeDuplicateCheckFlag 社員番号の重複チェックを実施するかどうか(実施する:true 実施しない:false)
      * @return エラーメッセージ
      */
-    private static String validateCode(EmployeeService service,String code,Boolean codeDupilicateCheckFlag) {
+    private static String validateCode(EmployeeService service,String code,Boolean codeDuplicateCheckFlag) {
 
 
     //入力値がなければエラーメッセージを返却
@@ -87,7 +87,7 @@ public class EmployeeValidator {
     private static long isDuplicateEmployee(EmployeeService service,String code) {
 
         long employeeConst = service.countByCode(code);
-        return employeesCount;
+        return employeeConst;
     }
 
     /**
@@ -95,7 +95,7 @@ public class EmployeeValidator {
      * @param name 氏名
      * @return エラーメッセージ
      */
-    private static String vallidateName(String name) {
+    private static String validateName(String name) {
 
         if(name == null || name.equals("")) {
             return MessageConst.E_NONAME.getMessage();
