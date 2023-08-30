@@ -124,13 +124,13 @@ public class EmployeeService extends ServiceBase{
      * @param pepper pepper文字列
      * @return バリデーションや更新処理中に発生したエラーのリスト
      */
-    public List<String> update(EmployeeView ev,String pepper){
+    public List<String> update(EmployeeView ev, String pepper) {
 
         //idを条件に登録済みの従業員情報を取得する
         EmployeeView savedEmp = findOne(ev.getId());
 
-        boolean validateCode= false;
-        if(!savedEmp.getCode().equals(ev.getCode())){
+        boolean validateCode = false;
+        if (!savedEmp.getCode().equals(ev.getCode())) {
             //社員番号を更新する場合
 
             //社員番号についてのバリデーションを行う
@@ -140,7 +140,7 @@ public class EmployeeService extends ServiceBase{
         }
 
         boolean validatePass = false;
-        if(ev.getPassword() !=null && !ev.getPassword().equals(""))
+        if (ev.getPassword() != null && !ev.getPassword().equals("")) {
             //パスワードに入力がある場合
 
             //パスワードについてのバリデーションを行う
@@ -148,25 +148,26 @@ public class EmployeeService extends ServiceBase{
 
             //変更後のパスワードをハッシュ化し設定する
             savedEmp.setPassword(
-                    EncryptUtil.getPasswordEncrypt(ev.getPassword(),pepper));
+                    EncryptUtil.getPasswordEncrypt(ev.getPassword(), pepper));
+        }
 
-            savedEmp.setName(ev.getName());//変更後の氏名を設定する
-            savedEmp.setAdminFlag(ev.getAdminFlag());//変更後の管理者フラグを設定する
+        savedEmp.setName(ev.getName()); //変更後の氏名を設定する
+        savedEmp.setAdminFlag(ev.getAdminFlag()); //変更後の管理者フラグを設定する
 
-            //更新日時に現在時刻を設定する
-            LocalDateTime today = LocalDateTime.now();
-            savedEmp.setUpdatedAt(today);
+        //更新日時に現在時刻を設定する
+        LocalDateTime today = LocalDateTime.now();
+        savedEmp.setUpdatedAt(today);
 
-            //更新内容についてバリデーションを行う
-            List<String> errors= EmployeeValidator.validate(this,savedEmp,validateCode,validatePass);
+        //更新内容についてバリデーションを行う
+        List<String> errors = EmployeeValidator.validate(this, savedEmp, validateCode, validatePass);
 
-            //バリデーションエラーがなければデータを更新する
-            if(errors.size()==0) {
-                update(savedEmp);
-            }
+        //バリデーションエラーがなければデータを更新する
+        if (errors.size() == 0) {
+            update(savedEmp);
+        }
 
-            //エラーを返却
-            return errors;
+        //エラーを返却（エラーがなければ0件の空リスト）
+        return errors;
     }
 
     /**
@@ -248,6 +249,3 @@ public class EmployeeService extends ServiceBase{
         em.getTransaction().commit();
     }
 }
-
-
-

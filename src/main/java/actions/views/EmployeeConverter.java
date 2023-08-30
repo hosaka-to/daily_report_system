@@ -88,13 +88,13 @@ public class EmployeeConverter {
          * @param ev Viewモデル(コピー元)
          */
         public static void copyViewToModel(Employee e, EmployeeView ev) {
-            e.setId(e.getId());
-            e.setCode(e.getCode());
-            e.setName(e.getName());
-            e.setPassword(e.getPassword());
-            e.setAdminFlag(e.getAdminFlag());
-            e.setCreatedAt(e.getCreatedAt());
-            e.setUpdatedAt(e.getUpdatedAt());
-            e.setDeleteFlag(e.getDeleteFlag());
+            e.setId(ev.getId());
+            e.setCode(ev.getCode());
+            e.setName(ev.getName());
+            e.setPassword(ev.getPassword());
+            e.setAdminFlag(ev.getAdminFlag());
+            e.setCreatedAt(ev.getCreatedAt());
+            e.setUpdatedAt(ev.getUpdatedAt());
+            e.setDeleteFlag(ev.getDeleteFlag());
     }
 }
