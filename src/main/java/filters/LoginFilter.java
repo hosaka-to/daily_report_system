@@ -70,7 +70,7 @@ public class LoginFilter implements Filter {
                         contextPath
                             + "?action=" + ForwardConst.ACT_AUTH.getValue()
                             + "&command=" + ForwardConst.CMD_SHOW_LOGIN.getValue());
-                return;;
+                return;
         }
         }else {
             //ログイン済み
