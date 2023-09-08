@@ -11,6 +11,17 @@
         </c:forEach>
     </div>
 </c:if>
+
+<fmt:formatDate value="${report.startTime}" pattern="HH時mm分ss" var="report.startTime" type="timeStyle" />
+<label for="${AttributeConst.REP_STARTTIME.getValue()}">出勤時間</label><br />
+<input type="time" name="${AttributeConst.REP_STARTTIME.getValue()}" id="${AttributeConst.REP_STARTTIME.getValue()}" value="<fmt:formatDate value='${report.startTime}' pattern='HH時mm分' />" />
+<br /><br />
+
+<fmt:formatDate value="${report.finishTime}" pattern="HH時mm分ss" var="report.finishTime" type="timeStyle" />
+<label for="${AttributeConst.REP_FINISHTIME.getValue()}">退勤時間</label><br />
+<input type="time" name="${AttributeConst.REP_FINISHTIME.getValue()}" id="${AttributeConst.REP_FINISHTIME.getValue()}" value="<fmt:formatDate value='${report.finishTime}' pattern='HH時mm分' />" />
+<br /><br />
+
 <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
 <label for="${AttributeConst.REP_DATE.getValue()}">日付</label><br />
 <input type="date" name="${AttributeConst.REP_DATE.getValue()}" id="${AttributeConst.REP_DATE.getValue()}" value="<fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' />" />

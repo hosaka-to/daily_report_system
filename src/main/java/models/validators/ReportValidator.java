@@ -31,8 +31,22 @@ public class ReportValidator {
             errors.add(contentError);
         }
 
+        //内容のチェック
+        String startTimeError = validateStartTime(rv.getStartTime());
+        if (!startTimeError.equals("")) {
+            errors.add(startTimeError);
+        }
+
+        //内容のチェック
+        String finishTimeError = validateFinishTime(rv.getFinishTime());
+        if (!finishTimeError.equals("")) {
+            errors.add(finishTimeError);
+        }
+
         return errors;
     }
+
+
 
     /**
      * タイトルに入力値があるかをチェックし、入力値がなければエラーメッセージを返却
@@ -56,6 +70,34 @@ public class ReportValidator {
     private static String validateContent(String content) {
         if(content == null || content.equals("")) {
             return MessageConst.E_NOCONTENT.getMessage();
+        }
+
+        //入力値がある場合は空文字を返却
+        return "";
+    }
+
+    /**
+     * 内容に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
+     * @param startTime 内容
+     * @return エラーメッセージ
+     */
+    private static String validateStartTime(String startTime) {
+        if (startTime == null || startTime.equals("")) {
+            return MessageConst.E_NOSTARTTIME.getMessage();
+        }
+
+        //入力値がある場合は空文字を返却
+        return "";
+    }
+
+    /**
+     * 内容に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
+     * @param finishTime 内容
+     * @return エラーメッセージ
+     */
+    private static String validateFinishTime(String finishTime) {
+        if (finishTime == null || finishTime.equals("")) {
+            return MessageConst.E_NOFINISHTIME.getMessage();
         }
 
         //入力値がある場合は空文字を返却

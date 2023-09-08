@@ -2,6 +2,7 @@ package actions;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -110,7 +111,9 @@ public class ReportAction extends ActionBase{
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
-                    null);
+                    null,
+                    LocalDateTime.parse(getRequestParam(AttributeConst.REP_STARTTIME)),
+                    LocalDateTime.parse(getRequestParam(AttributeConst.REP_FINISHTIME)));
 
             //日報情報登録
             List<String>errors=service.create(rv);
@@ -203,6 +206,8 @@ public class ReportAction extends ActionBase{
             rv.setReportDate(toLocalDate(getRequestParam(AttributeConst.REP_DATE)));
             rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
             rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
+            rv.setStartTime(toLocalDateTime(getRequestParam(AttributeConst.REP_STARTTIME)));
+            rv.setFinishTime(toLocalDateTime(getRequestParam(AttributeConst.REP_FINISHTIME)));
 
             //日報データを更新
             List<String> errors = service.update(rv);
