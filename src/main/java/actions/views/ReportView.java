@@ -3,6 +3,7 @@ package actions.views;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -58,10 +59,10 @@ public class ReportView {
     /**
      * 出勤時間
      */
-    private LocalDateTime startTime;
+    private LocalTime startTime;
 
     /**
      * 退勤時間
      */
-    private LocalDateTime finishTime;
+    private LocalTime finishTime;
 }

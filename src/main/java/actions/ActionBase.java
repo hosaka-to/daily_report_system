@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -192,11 +192,11 @@ public abstract class ActionBase {
      * @param strDateTime 変換前文字列
      * @return 変換後LocalDateTimeインスタンス
      */
-    protected LocalDateTime toLocalDateTime(String strDateTime) {
-        if (strDateTime == null || strDateTime.equals("")) {
-            return LocalDateTime.now();
+    protected LocalTime toLocalTime(String strTime) {
+        if (strTime == null || strTime.equals("")) {
+            return LocalTime.now();
         }
-        return LocalDateTime.parse(strDateTime);
+        return LocalTime.parse(strTime);
     }
 
     /**

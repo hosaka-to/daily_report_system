@@ -19,21 +19,15 @@
         <table id="report_list">
             <tbody>
                 <tr>
-                    <th class="report_startTime">出勤時間</th>
-                    <th class="report_finishTime">退勤時間</th>
                     <th class="report_name">氏名</th>
                     <th class="report_date">日付</th>
                     <th class="report_title">タイトル</th>
                     <th class="report_action">操作</th>
                 </tr>
                 <c:forEach var="report" items="${reports}" varStatus="status">
-                    <fmt:formatDate value="${report.startTime}" pattern="HH時mm分ss" var="report.startTime" type="timeStyle" />
-                    <fmt:formatDate value="${report.finishTime}" pattern="HH時mm分ss" var="report.finishTime" type="timeStyle" />
                     <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
 
                     <tr class="row${status.count % 2}">
-                        <td class="report_startTime"><fmt:formatDate value='${report.startTime}' pattern='HH時mm分' /></td>
-                        <td class="report_finishTime"><fmt:formatDate value='${report.finishTime}' pattern='HH時mm分' /></td>
                         <td class="report_name"><c:out value="${report.employee.name}" /></td>
                         <td class="report_date"><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>

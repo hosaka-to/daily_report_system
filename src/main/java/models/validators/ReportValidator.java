@@ -31,6 +31,7 @@ public class ReportValidator {
             errors.add(contentError);
         }
 
+        /*
         //内容のチェック
         String startTimeError = validateStartTime(rv.getStartTime());
         if (!startTimeError.equals("")) {
@@ -42,6 +43,7 @@ public class ReportValidator {
         if (!finishTimeError.equals("")) {
             errors.add(finishTimeError);
         }
+        */
 
         return errors;
     }
