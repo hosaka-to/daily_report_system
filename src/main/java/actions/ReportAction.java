@@ -2,7 +2,8 @@ package actions;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -103,6 +104,11 @@ public class ReportAction extends ActionBase{
             //セッションからログイン中の従業員情報を取得
             EmployeeView ev=(EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
+            LocalDateTime startDateTime = LocalDateTime.parse(getRequestParam(AttributeConst.REP_STARTTIME),dateTimeFormatter);
+            LocalDateTime finishDateTime = LocalDateTime.parse(getRequestParam(AttributeConst.REP_FINISHTIME),dateTimeFormatter);
+
             //パラメータの値をもとに日報情報のインスタンスを作成する
             ReportView rv =new ReportView(
                     null,
@@ -112,8 +118,8 @@ public class ReportAction extends ActionBase{
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
                     null,
-                    LocalTime.parse(getRequestParam(AttributeConst.REP_STARTTIME)),
-                    LocalTime.parse(getRequestParam(AttributeConst.REP_FINISHTIME)));
+                    startDateTime,
+                    finishDateTime);
 
             //日報情報登録
             List<String>errors=service.create(rv);
@@ -206,8 +212,8 @@ public class ReportAction extends ActionBase{
             rv.setReportDate(toLocalDate(getRequestParam(AttributeConst.REP_DATE)));
             rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
             rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
-            rv.setStartTime(toLocalTime(getRequestParam(AttributeConst.REP_STARTTIME)));
-            rv.setFinishTime(toLocalTime(getRequestParam(AttributeConst.REP_FINISHTIME)));
+            rv.setStartTime(toLocalDateTime(getRequestParam(AttributeConst.REP_STARTTIME)));
+            rv.setFinishTime(toLocalDateTime(getRequestParam(AttributeConst.REP_FINISHTIME)));
 
             //日報データを更新
             List<String> errors = service.update(rv);

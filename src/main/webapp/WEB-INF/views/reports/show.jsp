@@ -16,12 +16,23 @@
     <table>
         <tbody>
         <tr>
+            <th>出勤日時</th>
+            <fmt:parseDate value="${report.startTime}" pattern="yyyy-MM-dd'T'HH:mm" var="reportstartTime" type="date" />
+            <td><fmt:formatDate value="${reportstartTime}" pattern="HH:mm" /></td>
+        </tr>
+        <tr>
+            <th>退勤日時</th>
+            <fmt:parseDate value="${report.finishTime}" pattern="yyyy-MM-dd'T'HH:mm" var="reportfinishTime" type="date" />
+            <td><fmt:formatDate value="${reportfinishTime}" pattern="HH:mm" /></td>
+        </tr>
+        <tr>
             <th>氏名</th>
             <td><c:out value="${report.employee.name}" /></td>
         </tr>
         <tr>
             <th>日付</th>
             <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
+            <td><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
         </tr>
         <tr>
             <th>内容</th>

@@ -75,6 +75,9 @@ public class ReportConverter {
      * @param rv Viewモデル(コピー元)
      */
     public static void copyViewToModel(Report r,ReportView rv) {
+        r.setStartTime(rv.getStartTime());
+        r.setFinishTime(rv.getFinishTime());
+        r.setUpdatedAt(rv.getUpdatedAt());
         r.setId(rv.getId());
         r.setEmployee(EmployeeConverter.toModel(rv.getEmployee()));
         r.setReportDate(rv.getReportDate());
